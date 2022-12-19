@@ -925,7 +925,13 @@ class SchemaVisitor:
                 raise self._create_error(
                     "Unexpected element %s in xsd:sequence" % child.tag, child
                 )
-
+            if node.attrib:
+                if "minOccurs" in node.attrib:
+                    if not getattr(child, "minOccurs", None):
+                        child.set('minOccurs', node.attrib['minOccurs'])
+                if "maxOccurs" in node.attrib:
+                    if not getattr(child, "maxOccurs", None):
+                        child.set('maxOccurs', node.attrib['maxOccurs'])
             item = self.process(child, node)
             assert item is not None
             result.append(item)
