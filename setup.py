@@ -18,7 +18,7 @@ docs_require = [
     "sphinx>=1.4.0",
 ]
 
-async_require = ["httpx"]
+async_require = ["httpx>=0.15.0"]
 
 xmlsec_require = [
     "xmlsec>=0.6.1",
@@ -27,12 +27,11 @@ xmlsec_require = [
 tests_require = [
     "coverage[toml]==5.2.1",
     "freezegun==0.3.15",
-    "mock==2.0.0",
     "pretend==1.0.9",
     "pytest-cov==2.8.1",
     "pytest-httpx",
     "pytest-asyncio",
-    "pytest==6.0.1",
+    "pytest==6.2.5",
     "requests_mock>=0.7.0",
     # Linting
     "isort==5.3.2",
@@ -50,13 +49,16 @@ with open("README.rst") as fh:
 
 setup(
     name="zeep",
-    version="4.1.0",
-    description="A modern/fast Python SOAP client based on lxml / requests",
+    version="4.2.1",
+    description="A Python SOAP client",
     long_description=long_description,
     author="Michael van Tellingen",
     author_email="michaelvantellingen@gmail.com",
-    url="http://docs.python-zeep.org",
-    python_requires=">=3.6",
+    url="https://docs.python-zeep.org",
+    project_urls={
+        "Source": "https://github.com/mvantellingen/python-zeep",
+    },
+    python_requires=">=3.7",
     install_requires=install_requires,
     tests_require=tests_require,
     extras_require={
@@ -74,10 +76,12 @@ setup(
         "Development Status :: 5 - Production/Stable",
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3 :: Only",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
         "Programming Language :: Python :: Implementation :: CPython",
         "Programming Language :: Python :: Implementation :: PyPy",
     ],

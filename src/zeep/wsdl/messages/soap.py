@@ -84,7 +84,11 @@ class SoapMessage(ConcreteMessage):
         # XXX: This is only used in Soap 1.1 so should be moved to the the
         # Soap11Binding._set_http_headers(). But let's keep it like this for
         # now.
-        headers = {"SOAPAction": '"%s"' % self.operation.soapaction}
+        headers = {
+            "SOAPAction": '"%s"' % self.operation.soapaction
+            if self.operation.soapaction
+            else '""'
+        }
         return SerializedMessage(path=None, headers=headers, content=envelope)
 
     def deserialize(self, envelope):
@@ -112,6 +116,8 @@ class SoapMessage(ConcreteMessage):
             return result
 
         result = result.body
+        if not hasattr(result, '__len__'): # Return body directly if len is allowed (could indicated valid primitive type).
+            return result        
         if result is None or len(result) == 0:
             return None
         elif len(result) > 1:
